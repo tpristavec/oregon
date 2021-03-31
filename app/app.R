@@ -12,12 +12,14 @@ data <- read_rds("oregon.Rds")
 data <- st_transform(data, 4269)
 
 # Prepare
-varchoices <- c("totalpop", "age65", "under18", "hispanic", "black", "noba", "unempl","renters")
+varchoices <- c("totalpop", "age65", "under18", "hispanic", "black", "female", "inpov", "noba", "unempl","renters")
 names(varchoices) <- c("Total tract population", 
                        "Percent population age 65 and over",
                        "Percent population age 18 and under",
                        "Percent population Hispanic",
                        "Percent population Black",
+                       "Percent population female",
+                       "Percent population with income below poverty level",
                        "Percent working-age population without BA",
                        "Percent labor force population unemployed",
                        "Percent population renters")

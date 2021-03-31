@@ -27,6 +27,10 @@ Sys.getenv("CENSUS_API_KEY")
 # B03001_003 / B03001_001
 # Population Black
 # B02001_003 / B02001_001
+# Gender (male)
+# B01001_002 / B01001_001
+# Income below poverty in last 12 months
+# B17001_002 / B17001_001
 # Population over age 25 without a BA degree
 # B15003_002:021 / B15003_001
 # Population in labor force that is unemployed
@@ -49,6 +53,10 @@ acsvars <- c(
   "B03001_003", "B03001_001",
   # Black
   "B02001_003", "B02001_001",
+  # Gender (male)
+  "B01001_002", "B01001_001",
+  # Income below poverty
+  "B17001_002", "B17001_001",
   # Without BA
   "B15003_002", "B15003_003", "B15003_004", "B15003_005", "B15003_006", "B15003_007",
   "B15003_008", "B15003_009", "B15003_010", "B15003_011", "B15003_012", "B15003_013",
@@ -105,6 +113,8 @@ data_final <- data_tract %>% transmute(
                B01001_027E + B01001_028E + B01001_029E + B01001_030E) / B01001_001E * 100,
   hispanic = B03001_003E / B03001_001E * 100,
   black = B02001_003E / B02001_001E * 100,
+  female = (1 - (B01001_002E / B01001_001E)) * 100,
+  inpov = B17001_002E / B17001_001E * 100,
   noba = (B15003_002E + B15003_003E + B15003_004E + B15003_005E + B15003_006E + B15003_007E + B15003_008E +
             B15003_009E + B15003_010E + B15003_011E + B15003_012E + B15003_013E + B15003_014E + B15003_015E +
             B15003_016E + B15003_017E + B15003_018E + B15003_019E + B15003_020E + B15003_021E) / B15003_001E * 100,
@@ -119,6 +129,8 @@ data_final <- data_final %>% mutate(
   under18 = ifelse(is.nan(under18), NA, under18),
   hispanic = ifelse(is.nan(hispanic), NA, hispanic),
   black = ifelse(is.nan(black), NA, black),
+  female = ifelse(is.nan(female), NA, female),
+  inpov = ifelse(is.nan(inpov), NA, inpov),
   noba = ifelse(is.nan(noba), NA, noba),
   unempl = ifelse(is.nan(unempl), NA, unempl),
   renters = ifelse(is.nan(renters), NA, renters)
