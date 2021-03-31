@@ -45,3 +45,6 @@ vignettes/*.pdf
 # Data
 .xlsx
 *.xlsx
+
+/data/
+

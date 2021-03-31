@@ -148,6 +148,13 @@ data_final <- left_join(data_final, xwalk_list, by = c("GEOID" = "TRACT"))
 
 
 #
+# Add some variables ------------------------------------------------------------------------
+#
+
+data_final$countyfips <- as.character(paste0("41", data_final$COUNTYFP))
+
+
+#
 # Write ------------------------------------------------------------------------
 #
 
